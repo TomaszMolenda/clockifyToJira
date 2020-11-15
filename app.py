@@ -1,8 +1,13 @@
 import logging
 import sys
+import os
+from dotenv import load_dotenv
 from clockify import Clokify, ClockifyDay
 from jira import Jira
 
+load_dotenv()
+
+clockify_project_id = os.getenv("clockify-project-id")
 
 def merge_entries_by_date(clockify_entries):
     clockify_days = []
@@ -18,7 +23,7 @@ def merge_entries(entries, entries_by_date):
     for entry_date in entries_by_date:
         date = entry_date.date
         for entry in entries:
-            if "✅" in entry["description"]:
+            if "✅" in entry["description"] or clockify_project_id != entry["projectId"]:
                 continue
             start = entry["timeInterval"]["start"].split("T")[0]
             if start == date:
