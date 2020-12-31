@@ -13,7 +13,7 @@ class Clokify:
     user_id = os.getenv("clockify-user-id")
     api = "https://api.clockify.me/api/v1"
     headers = {'X-Api-Key': clockify_token}
-    page_size = 200
+    page_size = 400
 
     # format 2020-10-30
     def list_time_entries(self, start, end):
