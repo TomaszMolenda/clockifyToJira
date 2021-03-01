@@ -23,7 +23,7 @@ def merge_entries(entries, entries_by_date):
     for entry_date in entries_by_date:
         date = entry_date.date
         for entry in entries:
-            if "✅" in entry["description"] or clockify_project_id != entry["projectId"]:
+            if clockify_project_id != entry["projectId"] or "✅" in entry["description"]:
                 continue
             start = entry["timeInterval"]["start"].split("T")[0]
             if start == date:
